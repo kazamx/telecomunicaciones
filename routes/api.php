@@ -25,5 +25,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //Route::resource('ventas', [VentaController::class,'index'])->('index');
 
 Route::get('publicaciones',[PublicacionController::class,'index'])->name('index');
+Route::get('publicaciones/total',[PublicacionController::class,'mayorPublicaciones'])
+    ->name('mayorPublicaciones');
 
 Route::get('ventas',[VentaController::class,'index'])->name('index');
+Route::get('ventas/total',[VentaController::class,'totalVentas'])->name('totalVentas');
+

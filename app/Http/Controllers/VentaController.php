@@ -18,6 +18,14 @@ class VentaController extends Controller
         return $ventas;
     }
 
+    public function totalVentas()
+    {
+        $query = DB::select('SELECT u.name, u.id, SUM(v.venta) as total FROM ventas v
+        INNER JOIN users u ON v.id_user = u.id GROUP BY u.name, u.id ORDER BY total DESC');
+        
+        return $query;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

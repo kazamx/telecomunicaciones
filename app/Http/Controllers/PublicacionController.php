@@ -19,6 +19,23 @@ class PublicacionController extends Controller
         return $publicaciones;
     }
 
+    public function mayorPublicaciones()
+    {
+        //$publicaciones = DB::table('publicacions')->get();
+        /*
+        $query = DB::table('publicacions')
+            ->select('users.name, users.id', DB::raw('COUNT(*)'))
+            ->join('users', 'users.id', '=', 'publicacions.id_user')
+            ->groupBy('users.id','users.name')
+            ->get();
+            */
+            
+        $query = DB::select('SELECT u.name, u.id, p.imagen, COUNT(*) as total FROM publicacions p 
+            INNER JOIN users u ON p.id_user = u.id GROUP BY u.name, u.id, p.imagen ORDER BY total DESC');
+        
+        return $query;
+    }
+
     /**
      * Show the form for creating a new resource.
      *
